@@ -1,6 +1,6 @@
 # Web Development Curriculum ( MERN Stack )
 
--##**JavaScript**
+-#**JavaScript**
 
 1. ###**File System Organizer**
     - Organised Files in Downloads folder of pc 

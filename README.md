@@ -1,6 +1,6 @@
 # Web Development Curriculum ( MERN Stack )
 
-##**-JavaScript**
+-##**JavaScript**
 
 1. ###**File System Organizer**
     - Organised Files in Downloads folder of pc 
@@ -24,7 +24,7 @@
     - Variables => var, let, const
     - Json => parse and stringify 
     
-###**2.Web Scraping**
+2. ###**Web Scraping**
     - Basic HTML and CSS
     - Extracting info from given link
     - Async Function working

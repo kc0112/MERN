@@ -2,7 +2,7 @@
 
 # **JavaScript**
 
-1. ### **File System Organizer**
+###1. ### **File System Organizer**
     - Organised Files in Downloads folder of pc 
     - Viewing in Tree and Flat Mode
     - Output Statements 

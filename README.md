@@ -3,8 +3,8 @@
 1. # **JavaScript**
 
     1. ### **File System Organizer**
-        - Organised Files in Downloads folder of pc 
-        - Viewing in Tree and Flat Mode
+        - Task -> Organised Files in Downloads folder of pc 
+        - Task -> Viewing in Tree and Flat Mode
         - Output Statements 
         - Comments 
         - Let and Dynamic behavior 
@@ -26,7 +26,7 @@
 
     2. ### **Web Scraping**
         - Basic HTML and CSS
-        - Extracting info from given link
+        - Task -> Extracting info from given link
         - Async Function working
         - Pure Functions
         - Mutations and Side Effects
@@ -38,4 +38,8 @@
         - SetTimeout and SetInterval
         - Callbacks
 
-    3. ### **Web Scraping**
+    3. ### **Automation**
+        - Promises
+        - Framework Puppeteer
+        - Task -> Login Automation 
+    

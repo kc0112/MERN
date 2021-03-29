@@ -39,7 +39,12 @@
         - Callbacks
 
     3. ### **Automation**
-        - Promises
+        - Promises theory
         - Framework Puppeteer
-        - Task -> Login Automation 
+        - Task -> Hackerrank Login + submit code of question Automation 
+          - Promise.all()
+          - Wait for navigation()
+          - Wait for select()
+          - Creating own promise
+          - Memory Map
 

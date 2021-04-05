@@ -10,8 +10,8 @@ console.log("before");
 // Launched Browser
 let browserPromise = puppeteer.launch({
 	headless: false, // ":false" s Automation hote hue dikhta hai
-	// defaultViewport: null,
-	// args: ["--start-maximized", "--incognito"], // "--start.." -> max Window Size, "--icog..." -> Automates in icog. mode
+	defaultViewport: null,
+	args: ["--start-maximized", "--incognito"], // "--start.." -> max Window Size, "--icog..." -> Automates in icog. mode
 });
 
 browserPromise
@@ -78,7 +78,10 @@ browserPromise
 	})
 	// warmup page opened
 	.then(function () {
-		console.log("Warm Up page Opened!");
+        console.log("Warm Up page Opened!");
+        // Why we store warmup pg ? ->
+        // Once we submit 1st ques code, we have to go back to warmupPage 
+        // instead of going back , directly go to warmupPage using the stored url
 		warmupPageUrl = global_tab.url();
 		//for (let i = 0; i < codes.length; i++){
 		let code = codes[0];
@@ -98,7 +101,7 @@ browserPromise
 // click given quesName
 // type code inputbox
 // copy code
-// paste editor
+// paste in editor
 // submit
 function questionSolver(quesName, quesCode, warmupPageUrl) {
     return new Promise(function (resolve, reject) {
@@ -132,51 +135,60 @@ function questionSolver(quesName, quesCode, warmupPageUrl) {
 				);
 				return quesPageClick_Promise;
             })
-            
+            // select custom input checkbox (cursor b ajata)
 			.then(function () {
-				// checkbox click
-				let inputWillBeClickedPromise = waitAndClick(
+                // checkbox click
+				console.log("reached question page");
+                let inputWillBeClicked_Promise = waitAndClick(
 					".custom-checkbox.inline"
 				);
-				return inputWillBeClickedPromise;
-			})
+				return inputWillBeClicked_Promise;
+            })
+            // type code
 			.then(function () {
-				// type `
-				let codeWillBeTypedPromise = gtab.type(".custominput", code);
-				return codeWillBeTypedPromise;
-			})
+				console.log("checkbox clicked");
+				let codeWillBeTyped_Promise = global_tab.type(".custominput", quesCode);
+				return codeWillBeTyped_Promise;
+            })
+            // In custom input box ->
+            // ctrl + A  // typed code select
+            // ctrl + X  // typed code copied
 			.then(function () {
-				let controlIsHoldPromise = gtab.keyboard.down("Control");
+				console.log("input box code typed");
+				let controlIsHoldPromise = global_tab.keyboard.down("Control"); //ctrl dabake rkha 
 				return controlIsHoldPromise;
 			})
 			.then(function () {
-				// ctrl a
-				let aisPressedpromise = gtab.keyboard.press("a");
+				let aisPressedpromise = global_tab.keyboard.press("a"); // ctrl dabake rkha + A clicked
 				return aisPressedpromise;
-				// ctrl x
-			})
+            })
 			.then(function () {
-				let cutPromise = gtab.keyboard.press("x");
+				let cutPromise = global_tab.keyboard.press("x"); 
 				return cutPromise;
-			})
+            })
+            // click editor 
+            // ctrl + A  //template code hatana h
+            // ctrl + V  // copied code from inputbox pase krna editor me
 			.then(function () {
-				let editorWillBeClickedPromise = gtab.click(
+				console.log("code copied")
+				let editorWillBeClickedPromise = global_tab.click(
 					".monaco-editor.no-user-select.vs"
-				);
+				);                                               // editor pr cursor le ae
 				return editorWillBeClickedPromise;
 			})
 			.then(function () {
-				// ctrl a
-				let aisPressedpromise = gtab.keyboard.press("a");
+				let aisPressedpromise = global_tab.keyboard.press("a");  
 				return aisPressedpromise;
-				// ctrl x
 			})
 			.then(function () {
-				let pastePromise = gtab.keyboard.press("v");
+				console.log("code pasted");
+				let pastePromise = global_tab.keyboard.press("v");
 				return pastePromise;
-			})
+            })
+            // click submit button 
 			.then(function () {
-				let submitIsClickedPromise = gtab.click(
+				console.log("submit clicked")
+				let submitIsClickedPromise = global_tab.click(
 					".pull-right.btn.btn-primary.hr-monaco-submit"
 				);
 				return submitIsClickedPromise;
@@ -190,6 +202,7 @@ function questionSolver(quesName, quesCode, warmupPageUrl) {
 	});
 }
 
+// wait for slector to load and click selector
 function waitAndClick(selector) {
 	return new Promise(function (resolve, reject) {
 		let selectorWaitPromise = global_tab.waitForSelector(selector, {

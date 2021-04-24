@@ -1,4 +1,4 @@
-# **Theory and References**
+# **Theory**
 
 * output statements 
 * comments 

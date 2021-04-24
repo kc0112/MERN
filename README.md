@@ -48,3 +48,6 @@
           - Creating own promise
           - Memory Map
 
+2. # **Browser**
+    1. ### **Jira App**
+        - CSS 

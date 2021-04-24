@@ -23,7 +23,7 @@
 
 # References
 * https://eloquentjavascript.net/ -> first 4 chapters
-* https://www.freecodecamp.org/news/js-type-coercion-explained-27ba3d9a2839/-> for type cohersion 
+* https://www.freecodecamp.org/news/js-type-coercion-explained-27ba3d9a2839/ -> for type cohersion 
 * https://www.w3schools.com/js/js_function_parameters.asp  ->arguments array
 * https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Objects/JSON
 * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON/parse

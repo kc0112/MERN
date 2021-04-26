@@ -1,0 +1,38 @@
+body{
+    margin:0;
+    background-color:rgb(50, 50, 128);
+    text-align: center;
+    background-image: url("http://www.workflowmax.com/hubfs/6-things-to-do-list.png");
+}
+
+h1{
+    text-align: center;
+    background-color: white
+}
+
+.input_container{
+    height:15vh;
+}
+
+
+.task_container{
+    height:85vh;
+    font-family: 'Original Surfer', cursive;
+}
+
+li{
+    list-style:none; 
+    font-size: 1.25rem;
+    background-color:rgb(96, 113, 167);
+    width: 60vh ;
+    margin-bottom: 2vh;
+    margin-left: 33%;
+    height: 1.5rem;
+}
+
+.input_box{
+    margin-top: 3vh;
+    font-family: 'Original Surfer', cursive;
+    height: 60%;
+    font-size: 1.25rem;
+}

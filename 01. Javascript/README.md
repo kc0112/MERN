@@ -1,7 +1,5 @@
-1. # **JavaScript**
-
-    1. ### **File System Organizer**
-        - Task -> Organised Files in Downloads folder of pc 
+1. ### **File System Organizer**
+        - Task -> Organised files in Downloads folder of pc
         - Task -> Viewing in Tree and Flat Mode
         - Output Statements 
         - Comments 
@@ -22,7 +20,7 @@
         - Variables => var, let, const
         - Json => parse and stringify 
 
-    2. ### **Web Scraping**
+2. ### **Web Scraping**
         - Basic HTML and CSS
         - Task -> Extracting info from given link
         - Async Function working
@@ -36,7 +34,7 @@
         - SetTimeout and SetInterval
         - Callbacks
 
-    3. ### **Automation**
+3. ### **Automation**
         - Promises theory
         - Framework Puppeteer
         - Task -> Hackerrank Login + submit code of question Automation 

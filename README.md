@@ -12,4 +12,7 @@
         
 2. # **Browser**
     1. ### **Jira App**
+        - Todo List
+        - Task Manager
+
   

@@ -1,9 +1,8 @@
 # Activity
 1. ## **Jira App**              
-    1. ### **Todo List**
-        - Task 
-            - Input tasks and display
-            - delete tasks
+    1. ### **Todo List** 
+        - Input tasks and display
+        - delete tasks
     2. ### **Task Manager**
 
 

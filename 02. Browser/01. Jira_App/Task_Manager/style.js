@@ -1,13 +1,13 @@
 'use_strict';
-let clrbtn = document.querySelectorAll(".filter_color")
+let colorbtn = document.querySelectorAll(".filter_color")
 let workArea = document.querySelector(".maincontainer");
 let body = document.body;
 let bothbtnArr = document.querySelectorAll(".icon-container");
 let plusBtn = bothbtnArr[0];
 let closeBtn = bothbtnArr[1];
 let deleteState = false; //close btn not clicked
-let colorArr = ["pink", "blue", "green", "black"];
-let taskArr = [];
+let colorArr = ["pink", "blue", "green", "black"]; 
+let taskArr = []; // local storage
 
 // getting + displaying last session saved tasks
 if (localStorage.getItem("allTask")) {
@@ -19,9 +19,9 @@ if (localStorage.getItem("allTask")) {
 }
 
 // coloring the background
-for (let i = 0; i < clrbtn.length; i++){
-    clrbtn[i].addEventListener("click", function (e) {
-        let color = clrbtn[i].classList[1];  // classList = filter_color pink  -> classList[1] = pink
+for (let i = 0; i < colorbtn.length; i++){
+    colorbtn[i].addEventListener("click", function (e) {
+        let color = colorbtn[i].classList[1];  // classList = filter_color pink  -> classList[1] = pink
         workArea.style.backgroundColor = color; // color changed
     })
 }

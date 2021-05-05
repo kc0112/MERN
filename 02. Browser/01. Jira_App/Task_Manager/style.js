@@ -85,7 +85,7 @@ plusBtn.addEventListener("click", createModal);
         })  
         
     }
-    // creating task tickets => 1.create task Ticket + 2.add ticket to local storage + 3.adding eventListeners(change color,delete task)
+    // creating task tickets => 1.create task Ticket + 2.add ticket to local storage + 3.adding eventListeners(change color,delete task,edit Task)
     function createTask(clr,text,flag,id){
         let taskContainer = document.createElement("div");
         let uidfn = new ShortUniqueId(); 
@@ -96,7 +96,7 @@ plusBtn.addEventListener("click", createModal);
         taskContainer.innerHTML = `
             <div class = "task_filter ${clr}"></div>
             <div class = "task_desc_container">
-                <h3 class = "uid">${uid}</h3>
+                <h3 class = "uid">#${uid}</h3>
                 <div class = "task_desc" contenteditable="true">${text}</div>
             </div>`
         workArea.appendChild(taskContainer);
@@ -104,7 +104,7 @@ plusBtn.addEventListener("click", createModal);
         //2.modal se add kia => add to local storage
         if (flag === true) {
             let obj = {
-                "id": uid,
+                "id": `${uid}`,
                 "color": clr,
                 "task": text,
             };
@@ -115,12 +115,10 @@ plusBtn.addEventListener("click", createModal);
         
         //3. adding eventListeners
         taskFilter = taskContainer.querySelector(".task_filter");
+        let taskDesc = taskContainer.querySelector(".task_desc");
         taskFilter.addEventListener("click", changeColor); 
         taskContainer.addEventListener("click", deleteTask);
-
-        let taskDesc = taskContainer.querySelector(".task_desc");
         taskDesc.addEventListener("keypress", editTask);
-        
     }
     //  eventListeners
         // 1.tickets ke color pr click kro to color change
@@ -132,24 +130,36 @@ plusBtn.addEventListener("click", createModal);
             taskFilter.classList.remove(cclr); // classList => task_filter
             taskFilter.classList.add(colorArr[newIdx]); // classList => task_filter blue
         }
-        // 2.if closebtn pressed -> kisi bhi ticket pr click => deletes ticket
-function deleteTask(e) {
-    let taskContainer = e.currentTarget;
+        // 2.if closebtn pressed => kisi bhi ticket pr click => deletes ticket + handle changes in localStorage
+        function deleteTask(e) {
+            let taskContainer = e.currentTarget;
             if (deleteState) { // closebtn pressed => delete ticket from 1.display + 2.localStorage
-                let uidEle = taskContainer.querySelector(".uid");
-                let uid = uidEle.innerText;
+                let uidEle = taskContainer.querySelector(".uid"); // ".uid" => #hedjsk
+                let uid = uidEle.innerText.split("#")[1]; // hedjsk
                 for (let i = 0; i < taskArr.length; i++){
                     let { id } = taskArr[i];
-                    console.log(uid);
-                    console.log(taskArr);
-                    if (id == uid) {
-                        console.log("UID: ", uid, "ID: ", id);
-                        taskArr.splice(i, 1);
+                    if (id == uid) { 
+                        taskArr.splice(i, 1); // remove that task ticket from taskArr
                         let finalArr = JSON.stringify(taskArr);
-                        localStorage.setItem("allTask",finalArr);
-                        taskContainer.remove(); 
+                        localStorage.setItem("allTask",finalArr); // store updated taskArr
+                        taskContainer.remove(); // remove the ticket from display
                         break;
                     }
+                }
+            }
+        }
+        // 3.handle changes in localStorage  //editing is handled by <div contenteditable>
+        function editTask(e) {
+            let taskDesc = e.currentTarget; // ".task_desc"
+            let uidEle = taskDesc.parentNode.children[0]; // ".uid" => #hedjsk
+            let uid = uidEle.innerText.split("#")[1]; // hedjsk
+            for (let i = 0; i < taskArr.length; i++){
+                let { id } = taskArr[i]; 
+                if (id == uid) { // if id in localStorage
+                    taskArr[i].task = taskDesc.value; // change text
+                    let finalArr = JSON.stringify(taskArr);
+                    localStorage.setItem("allTask",finalArr); // add in local storage
+                    break;
                 }
             }
         }
@@ -168,18 +178,3 @@ closeBtn.addEventListener("click", setDeleteState);
         deleteState = !deleteState; // change state
     }
 
-function editTask(e) {
-    let taskDesc = e.currentTarget; 
-    let uidEle = taskDesc.parentNode.children[0];
-    let uid = uidEle.innerText;
-    for (let i = 0; i < taskArr.length; i++){
-        let { id } = taskArr[i];
-        if (id == uid) {
-            taskArr[i].task = taskDesc.innerText;
-            taskArr.splice(i, 1);
-            let finalArr = JSON.stringify(taskArr);
-            localStorage.setItem("allTask",finalArr);
-            break;
-        }
-    }
-}

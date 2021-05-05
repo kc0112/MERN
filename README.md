@@ -1,7 +1,6 @@
 # Web Development Curriculum ( MERN Stack )
 
 1. # **JavaScript**
-
     1. ### **File System Organizer**
     2. ### **Web Scraping**
     3. ### **Automation**

@@ -1,4 +1,4 @@
-# Topics
+# Theory
 
 # References
 * https://fontawesome.com/changelog/latest -> icons

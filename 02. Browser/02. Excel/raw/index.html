@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            margin:0px;
+        }
+        *{
+            box-sizing: border-box;
+        }
+
+        .top-row{
+            height: 30px;
+            background-color: lightgreen;
+            display:flex;
+        }
+
+        .left-col{
+            width:29px;
+        }
+
+        .left-col_box{
+            height: 30px;
+            background-color: lightgreen;
+            text-align: center;
+            border:1px solid;
+        }
+        .col{
+            min-width: 60px; /*width:60px dete to jitti jgh milri usme a-z accomodate kradta pr isme sb ko alg alg width dra*/
+            border: 1px solid;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            left:29px;
+        }
+        .top-left-block{
+            position:absolute;
+            width:29px;
+            height: 30px;
+            background-color: gray;
+        }
+
+        .grid-row_box{
+            display:flex;
+            height: 30px;
+        }
+        .grid{
+            position: relative;
+            bottom:3000px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="grid-container">
+        <div class="top-left-block"></div>
+        <div class="top-row"></div>
+        <div class="left-col"></div>
+        <div class="grid"></div>
+    </div>
+
+    <script>
+        let topRow = document.querySelector(".top-row");
+        let str="";
+        for(let i=0;i<26;i++){
+            str+=`<div class='col'>${String.fromCharCode(65+i)}</div>`;
+        }
+        topRow.innerHTML = str;
+
+        let leftCol= document.querySelector(".left-col");
+        str="";
+        for(let i=0;i<100;i++){
+            str+=`<div class='left-col_box'>${i+1}</div>`;
+        }
+        leftCol.innerHTML = str;
+
+        let grid = document.querySelector(".grid");
+        str="";
+        for(let i=0;i<100;i++){
+            str+=`<div class='grid-row_box'>`
+            for(let j=0;j<26;j++){
+                str+=`<div class='col'>${i+1}${String.fromCharCode(65+j)}</div>`;
+            }
+            str+=`</div>`
+        }
+        grid.innerHTML = str;
+    </script>
+</body>
+</html>

@@ -1,16 +1,21 @@
+
+// ============================= top row => A B C =====================================
 let topRow = document.querySelector(".top-row");
 let str = "";
 for (let i = 0; i < 26; i++) {
-    str += `<div class='col'>${String.fromCharCode(65 + i)}</div>`;
+    str += `<div class='col'>${String.fromCharCode(65 + i)}</div>`; 
 }
 topRow.innerHTML = str;
+
+// ============================= left col => 1 2 3 =====================================
 let leftCol = document.querySelector(".left-col");
 str = ""
 for (let i = 0; i < 100; i++) {
     str += `<div class='left-col_box'>${i + 1}</div>`
 }
 leftCol.innerHTML = str;
-// 2d array
+
+// ============================= grid 2d array =====================================
 let grid = document.querySelector(".grid");
 str = "";
 for (let i = 0; i < 100; i++) {

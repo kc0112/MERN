@@ -39,6 +39,9 @@ body{
                 .BUI_container>*{
                     width:30%;
                 }
+                .active-btn{
+                    background-color: grey;
+                }
 
             .color-container{
                 display: flex;

@@ -28,19 +28,27 @@ for (let i = 0; i < 100; i++) {
 grid.innerHTML = str;
 
 // making database
-let sheetDB = [];
-for (let i = 0; i < 100; i++){
-    let row = [];
-    for (let j = 0; j < 26; j++){
-        let cell = {
-            bold : false,
-            italic: false,
-            underline: false,
-            fontFamily:"Arial",
-            fontSize: "10",
-            halign:"left"
+
+worksheetDB = [];
+function initCurrentSheetDb() {
+    let sheetDB = [];
+    for (let i = 0; i < 100; i++){
+        let row = [];
+        for (let j = 0; j < 26; j++){
+            let cell = {
+                bold : false,
+                italic: false,
+                underline: false,
+                fontFamily:"Arial",
+                fontSize: "10",
+                halign: "left",
+                value: "",
+            }
+            row.push(cell);
         }
-        row.push(cell);
+        sheetDB.push(row);
     }
-    sheetDB.push(row);
+    worksheetDB.push(sheetDB);
 }
+initCurrentSheetDb();
+

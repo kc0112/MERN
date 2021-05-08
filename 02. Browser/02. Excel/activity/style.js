@@ -13,8 +13,9 @@ let italicElem = document.querySelector(".Italic");
 let underlineElem = document.querySelector(".underline");
 let allAlignBtns = document.querySelectorAll(".alignment-container>*");
 let allBUIBtns = document.querySelectorAll(".BUI_container>*");
-
+let sheetDB = worksheetDB[0]; // initally ek db rhega prog start hte hi
 let i = 2;
+initUI();
 
 //*******************************menu***************************************
 
@@ -88,9 +89,16 @@ function getRidCidFromAddress(address) {
 
 //change font style
 fontFamily.addEventListener("change", function () {
-    let cell = getCell();
+    let address = addressBar.value; //A1
+    let { rid, cid } = getRidCidFromAddress(address); //00
+    let cell = document.querySelector(`.col[rid="${rid}"][cid="${cid}"]`);
+    let cellObj = sheetDB[rid][cid];
+
+    // set font_family + add to db
     let cfont = fontFamily.value;;
     cell.style.fontFamily = cfont
+    
+    cellObj.fontFamily = `${cfont}`;
 })
 
 // changes font-size
@@ -220,9 +228,25 @@ for (let i = 0; i < allCells.length; i++){
         } else if (cellObj.halign == "center") {
             centerBtn.classList.add("active-btn")
         }
+
+        // fontSize -> set to cell's previous set value
+        fontBtn.value = cellObj.fontSize;
+
+        // fontFamilty -> set to cell's previous set value
+        fontFamily.value = cellObj.fontFamily;
     })
 }
 allCells[0].click();
+
+for (let i = 0; i < allCells.length; i++) {
+    allCells[i].addEventListener("blur", function handleCell() {
+        let address = addressBar.value; //A1
+        let { rid, cid } = getRidCidFromAddress(address); //00
+        let cell = document.querySelector(`.col[rid="${rid}"][cid="${cid}"]`);
+        let cellObj = sheetDB[rid][cid];
+        cellObj.value = cell.innerText;
+    });
+}
 
 // =================================sheet========================================
 
@@ -233,24 +257,67 @@ firstSheet.addEventListener("click", function (e) {
         filter.classList.remove("active");
     })
     firstSheet.classList.add("active");
+
+    // set sheetDb to current active sheet + restore data on UI acc to db
+    sheetDB = worksheetDB[0];
+    setUI(sheetDB);
 })
 
-// click + => 1.add new sheet + 2.set eventListener on each sheet(active)
+// click + => 1.a.add new sheet + b.create a new db for this sheet+display empty sheet | 2. a.set eventListener on each sheet(active)+display empty sheet + b.set sheetDb to current active sheet+restore data on UI
 addbtn.addEventListener("click", addSheet);
 function addSheet(e) {
-/*1*/let newSheet = document.createElement("div");
+/*1a*/let newSheet = document.createElement("div");
     newSheet.setAttribute("class", "sheet");
-    newSheet.setAttribute("sheetidx", "i");
+    newSheet.setAttribute("sheetidx",i);
     newSheet.innerText = `sheet${i}`
     sheetlist.append(newSheet);
     i = i + 1;
-/*2*/newSheet.addEventListener("click", function (e) {
+
+// b.create a new db for this sheet 
+    initCurrentSheetDb(); // create a new sheetDB pushed into worksheetDB
+
+/*2a*/newSheet.addEventListener("click", function (e) {
         let sheetArr = document.querySelectorAll(".sheet");
         sheetArr.forEach((filter) => {
             filter.classList.remove("active");
         })
         newSheet.classList.add("active");
-    })
+        initUI(); // display empty sheet on UI
+// b.set sheetDb to current active sheet + restore data on UI
+        let sheetIdx = newSheet.getAttribute("sheetidx");
+        
+        sheetDB = worksheetDB[sheetIdx - 1]; // selects current sheet db
+        setUI(sheetDB); // display on UI acc to sheetDB
+        })
+}
+
+// restores data of current active sheet on UI
+function setUI(sheetDB) {
+    for (let i = 0; i < sheetDB.length; i++) {
+        for (let j = 0; j < sheetDB[i].length; j++) {
+            let cell = document.querySelector(`.col[rid="${i}"][cid="${j}"]`);
+            let { bold, italic, underline, fontFamily, fontSize, halign, value } = sheetDB[i][j];
+            cell.style.fontWeight = bold == true ? "bold" : "normal";
+            cell.style.fontStyle = italic == true ? "italic" : "normal";
+            cell.style.textDecoration = underline == true ? "underline" : "none";
+            cell.style.fontFamily = fontFamily
+            cell.style.fontSize = fontSize + "px";
+            cell.style.textAlign = halign
+            cell.innerText = value; 
+        }
+    }
+}
+
+function initUI() {
+    for (let i = 0; i < allCells.length; i++) {
+        allCells[i].style.fontWeight = "normal";
+        allCells[i].style.fontStyle = "normal";
+        allCells[i].style.textDecoration = "none";
+        allCells[i].style.fontFamily = "Arial";
+        allCells[i].style.fontSize = "10px";
+        allCells[i].style.textAlign = "left";
+        allCells[i].innerText = "";
+    }
 }
 
 

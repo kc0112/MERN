@@ -15,7 +15,7 @@ let allAlignBtns = document.querySelectorAll(".alignment-container>*");
 let allBUIBtns = document.querySelectorAll(".BUI_container>*");
 let sheetDB = worksheetDB[0]; // initally ek db rhega prog start hte hi
 let i = 2;
-initUI();
+initUI(); // initially assign styles to sheet1
 
 //*******************************menu***************************************
 
@@ -87,7 +87,7 @@ function getRidCidFromAddress(address) {
 
 //=============================formatting================
 
-//change font style
+// change font style
 fontFamily.addEventListener("change", function () {
     let address = addressBar.value; //A1
     let { rid, cid } = getRidCidFromAddress(address); //00
@@ -238,6 +238,7 @@ for (let i = 0; i < allCells.length; i++){
 }
 allCells[0].click();
 
+// save text to db (blur event -> detects when element is out of focus)
 for (let i = 0; i < allCells.length; i++) {
     allCells[i].addEventListener("blur", function handleCell() {
         let address = addressBar.value; //A1
@@ -291,7 +292,7 @@ function addSheet(e) {
         })
 }
 
-// restores data of current active sheet on UI
+// restores data+styles of current active sheet on UI
 function setUI(sheetDB) {
     for (let i = 0; i < sheetDB.length; i++) {
         for (let j = 0; j < sheetDB[i].length; j++) {
@@ -308,6 +309,7 @@ function setUI(sheetDB) {
     }
 }
 
+// sets initial styles on empty page
 function initUI() {
     for (let i = 0; i < allCells.length; i++) {
         allCells[i].style.fontWeight = "normal";

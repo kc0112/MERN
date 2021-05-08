@@ -27,8 +27,7 @@ for (let i = 0; i < 100; i++) {
 }
 grid.innerHTML = str;
 
-// making database
-
+// making database -> worksheet [sheetDB1[][],sheetDB2[][]------] 
 worksheetDB = [];
 function initCurrentSheetDb() {
     let sheetDB = [];

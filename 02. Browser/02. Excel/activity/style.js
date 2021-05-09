@@ -17,11 +17,12 @@ let sheetDB = worksheetDB[0]; // initally ek db rhega prog start hte hi
 let i = 2;
 initUI(); // initially assign styles to sheet1
 
-//*******************************menu***************************************
+//****************************************************************************menu*************************************************************
 
 
-// =================================alignment===================================
+// =========================================================alignment=========================================================
 
+// align + active + add to db
 leftBtn.addEventListener("click", function (e) {
     let address = addressBar.value; //A1
     let { rid, cid } = getRidCidFromAddress(address); //00
@@ -39,7 +40,7 @@ leftBtn.addEventListener("click", function (e) {
     let cellObj = sheetDB[rid][cid];
     cellObj.halign = "left";
 })
-
+// align + active + add to db
 rightBtn.addEventListener("click", function (e) {
     let address = addressBar.value;
     let { rid, cid } = getRidCidFromAddress(address);
@@ -53,7 +54,7 @@ rightBtn.addEventListener("click", function (e) {
     let cellObj = sheetDB[rid][cid];
     cellObj.halign = "right";
 })
-
+// align + active + add to db
 centerBtn.addEventListener("click", function (e) {
     let address = addressBar.value;
     let { rid, cid } = getRidCidFromAddress(address);
@@ -68,13 +69,13 @@ centerBtn.addEventListener("click", function (e) {
     cellObj.halign = "center";
 })
 
-// returns cell denoted in address-box
+/*returns cell denoted in address-box(unused)
 function getCell() {
     let address = addressBar.value; //A1
     let { rid, cid } = getRidCidFromAddress(address); //00
     let cell = document.querySelector(`.col[rid="${rid}"][cid="${cid}"]`);
     return cell;
-}
+}*/
 
 // return row & col acc to grid
 function getRidCidFromAddress(address) {
@@ -85,9 +86,9 @@ function getRidCidFromAddress(address) {
     return { rid,cid };//00
 }
 
-//=============================formatting================
+//========================================================formatting==================================================
 
-// change font style
+// change font style + add to db 
 fontFamily.addEventListener("change", function () {
     let address = addressBar.value; //A1
     let { rid, cid } = getRidCidFromAddress(address); //00
@@ -101,7 +102,7 @@ fontFamily.addEventListener("change", function () {
     cellObj.fontFamily = `${cfont}`;
 })
 
-// changes font-size
+// changes font-size + add to db 
 fontBtn.addEventListener("change", function () {
     let address = addressBar.value; //A1
     let { rid, cid } = getRidCidFromAddress(address); //00
@@ -113,7 +114,7 @@ fontBtn.addEventListener("change", function () {
     cellObj.fontSize = `${fontSize}`;
 })
 
-// bold 
+// bold/normal + set active/inactive + change in db
 boldElem.addEventListener("click", function () {
     let address = addressBar.value; //A1
     let { rid, cid } = getRidCidFromAddress(address); //00
@@ -127,7 +128,7 @@ boldElem.addEventListener("click", function () {
         cell.style.fontWeight = "bold";
         cellObj.bold = true;
     }
-    // if btn active -> active state + bold krdo + add in db
+    // if btn active -> change active state + normal krdo + add in db
     else {
         boldElem.classList.remove("active-btn");
         cell.style.fontWeight = "normal";
@@ -135,7 +136,7 @@ boldElem.addEventListener("click", function () {
     }
 })
 
-//italic
+// italic/normal + set active/inactive + change in db
 italicElem.addEventListener("click", function () {
     let isActive = italicElem.classList.contains("active-btn");
     let address = addressBar.value; //A1
@@ -157,7 +158,7 @@ italicElem.addEventListener("click", function () {
     }
 })
 
-//underline
+// underline/none + set active/inactive + change in db
 underlineElem.addEventListener("click", function () {
     let isActive = underlineElem.classList.contains("active-btn");
     let address = addressBar.value; //A1
@@ -179,19 +180,17 @@ underlineElem.addEventListener("click", function () {
     }
 })
 
-
-
-
-// =================================formula=====================================
+// ===========================================================formula==================================================
 
 
 
 
 
 
-// =================================grid========================================
+// *************************************************************************grid*********************************************************
 
-// click cell => address box = clicked cell location (A1)
+// click cell => 1.address box = clicked cell location (A1) 
+//            => 2.Formatting jo db me thi restore krdo
 for (let i = 0; i < allCells.length; i++){
     allCells[i].addEventListener("click", function handlecell() {
         let rid = Number(allCells[i].getAttribute("rid")); //0
@@ -249,9 +248,9 @@ for (let i = 0; i < allCells.length; i++) {
     });
 }
 
-// =================================sheet========================================
+// *************************************************************************sheet*********************************************************
 
-// first sheet already active + default present
+// first sheet ko active krdo + set UI stored in db 
 firstSheet.addEventListener("click", function (e) {
     let sheetArr = document.querySelectorAll(".sheet");
     sheetArr.forEach((filter) => {
@@ -264,7 +263,8 @@ firstSheet.addEventListener("click", function (e) {
     setUI(sheetDB);
 })
 
-// click + => 1.a.add new sheet + b.create a new db for this sheet+display empty sheet | 2. a.set eventListener on each sheet(active)+display empty sheet + b.set sheetDb to current active sheet+restore data on UI
+// click + => 1.a.add new sheet + b.create a new db for this sheet + c.set eventListener on each sheet(active)
+// click sheet => 2.a.set sheetDb to current active sheet +b.display empty sheet + c.restore data on UI
 addbtn.addEventListener("click", addSheet);
 function addSheet(e) {
 /*1a*/let newSheet = document.createElement("div");
@@ -274,25 +274,24 @@ function addSheet(e) {
     sheetlist.append(newSheet);
     i = i + 1;
 
-// b.create a new db for this sheet 
-    initCurrentSheetDb(); // create a new sheetDB pushed into worksheetDB
 
-/*2a*/newSheet.addEventListener("click", function (e) {
+/*b*/ initCurrentSheetDb(); // create a new sheetDB pushed into worksheetDB
+
+/*c*/ newSheet.addEventListener("click", function (e) {
         let sheetArr = document.querySelectorAll(".sheet");
         sheetArr.forEach((filter) => {
             filter.classList.remove("active");
         })
-        newSheet.classList.add("active");
-        initUI(); // display empty sheet on UI
-// b.set sheetDb to current active sheet + restore data on UI
+/*2a*/  newSheet.classList.add("active");
+/*b*/   initUI(); 
+
         let sheetIdx = newSheet.getAttribute("sheetidx");
-        
         sheetDB = worksheetDB[sheetIdx - 1]; // selects current sheet db
-        setUI(sheetDB); // display on UI acc to sheetDB
+/*c*/   setUI(sheetDB); // display on UI acc to sheetDB
         })
 }
 
-// restores data+styles of current active sheet on UI
+// restores formatting of current active sheet on UI
 function setUI(sheetDB) {
     for (let i = 0; i < sheetDB.length; i++) {
         for (let j = 0; j < sheetDB[i].length; j++) {

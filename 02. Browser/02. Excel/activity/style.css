@@ -141,7 +141,7 @@ body{
 
 .left-col {
     width: 25px;
-    border: 1px solid red;
+    /* border: 1px solid red; */
 }
 .left-col_box {
     height: 30px;

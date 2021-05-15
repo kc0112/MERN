@@ -39,9 +39,11 @@ function initCurrentSheetDb() {
                 italic: false,
                 underline: false,
                 fontFamily:"Arial",
-                fontSize: "10",
+                fontSize: "16",
                 halign: "left",
                 value: "",
+                children: [],
+                formula:"",
             }
             row.push(cell);
         }

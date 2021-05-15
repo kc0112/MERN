@@ -1,20 +1,27 @@
-let addbtn = document.querySelector(".add-sheet_container");
-let sheetlist = document.querySelector(".sheets-list");
-let firstSheet = document.querySelector(".sheet");
-let allCells = document.querySelectorAll(".grid .col");
-let addressBar = document.querySelector(".address-box");
+let allAlignBtns = document.querySelectorAll(".alignment-container>*");
 let leftBtn = document.querySelector(".left");
 let rightBtn = document.querySelector(".right");
 let centerBtn = document.querySelector(".center");
+
 let fontFamily = document.querySelector(".font-family");
 let fontBtn = document.querySelector(".font-size");
+
+let allBUIBtns = document.querySelectorAll(".BUI_container>*");
 let boldElem = document.querySelector(".bold");
 let italicElem = document.querySelector(".Italic");
 let underlineElem = document.querySelector(".underline");
-let allAlignBtns = document.querySelectorAll(".alignment-container>*");
-let allBUIBtns = document.querySelectorAll(".BUI_container>*");
-let sheetDB = worksheetDB[0]; // initally ek db rhega prog start hte hi
+
+let addressBar = document.querySelector(".address-box");
+let formulaBarInput = document.querySelector(".formula-box");
+
+let addbtn = document.querySelector(".add-sheet_container");
+let allCells = document.querySelectorAll(".grid .col");
+
+let sheetlist = document.querySelector(".sheets-list");
+let firstSheet = document.querySelector(".sheet");
+
 let i = 2;
+let sheetDB = worksheetDB[0]; // initally ek db rhega prog start hte hi
 initUI(); // initially assign styles to sheet1
 
 //****************************************************************************menu*************************************************************
@@ -182,12 +189,10 @@ underlineElem.addEventListener("click", function () {
 
 // ===========================================================formula==================================================
 
-
-
-
-
+// IN FORMULABAR.JS
 
 // *************************************************************************grid*********************************************************
+
 
 // click cell => 1.address box = clicked cell location (A1) 
 //            => 2.Formatting jo db me thi restore krdo
@@ -228,6 +233,8 @@ for (let i = 0; i < allCells.length; i++){
             centerBtn.classList.add("active-btn")
         }
 
+        formulaBarInput.value = cellObj.formula;
+
         // fontSize -> set to cell's previous set value
         fontBtn.value = cellObj.fontSize;
 
@@ -236,17 +243,17 @@ for (let i = 0; i < allCells.length; i++){
     })
 }
 allCells[0].click();
+// // save text to db (blur event -> detects when element is out of focus)
+// for (let i = 0; i < allCells.length; i++) {
+//     allCells[i].addEventListener("blur", function handleCell() {
+//         let address = addressBar.value; //A1
+//         let { rid, cid } = getRidCidFromAddress(address); //00
+//         let cell = document.querySelector(`.col[rid="${rid}"][cid="${cid}"]`);
+//         let cellObj = sheetDB[rid][cid];
+//         cellObj.value = cell.innerText;
+//     });
+// }
 
-// save text to db (blur event -> detects when element is out of focus)
-for (let i = 0; i < allCells.length; i++) {
-    allCells[i].addEventListener("blur", function handleCell() {
-        let address = addressBar.value; //A1
-        let { rid, cid } = getRidCidFromAddress(address); //00
-        let cell = document.querySelector(`.col[rid="${rid}"][cid="${cid}"]`);
-        let cellObj = sheetDB[rid][cid];
-        cellObj.value = cell.innerText;
-    });
-}
 
 // *************************************************************************sheet*********************************************************
 
@@ -264,30 +271,35 @@ firstSheet.addEventListener("click", function (e) {
 })
 
 // click + => 1.a.add new sheet + b.create a new db for this sheet + c.set eventListener on each sheet(active)
-// click sheet => 2.a.set sheetDb to current active sheet +b.display empty sheet + c.restore data on UI
+// click sheet => 2.a.set sheetDb to current active sheet +b.display empty sheet + c.restore data on UI+ CLICK ON FIRST CELL
 addbtn.addEventListener("click", addSheet);
 function addSheet(e) {
-/*1a*/let newSheet = document.createElement("div");
+    //a.1
+    let newSheet = document.createElement("div");
     newSheet.setAttribute("class", "sheet");
     newSheet.setAttribute("sheetidx",i);
     newSheet.innerText = `sheet${i}`
     sheetlist.append(newSheet);
     i = i + 1;
 
-
-/*b*/ initCurrentSheetDb(); // create a new sheetDB pushed into worksheetDB
-
-/*c*/ newSheet.addEventListener("click", function (e) {
+//b
+    initCurrentSheetDb(); // create a new sheetDB pushed into worksheetDB
+//c
+    newSheet.addEventListener("click", function (e) {
         let sheetArr = document.querySelectorAll(".sheet");
         sheetArr.forEach((filter) => {
             filter.classList.remove("active");
         })
-/*2a*/  newSheet.classList.add("active");
-/*b*/   initUI(); 
-
+//2a
+        newSheet.classList.add("active");
+//b
+        initUI();
+        
         let sheetIdx = newSheet.getAttribute("sheetidx");
         sheetDB = worksheetDB[sheetIdx - 1]; // selects current sheet db
-/*c*/   setUI(sheetDB); // display on UI acc to sheetDB
+//c
+        setUI(sheetDB); // display on UI acc to sheetDB
+        allCells[0].click();
         })
 }
 
@@ -308,16 +320,22 @@ function setUI(sheetDB) {
     }
 }
 
-// sets initial styles on empty page
+// sets initial styles on empty page || add features to cell
 function initUI() {
     for (let i = 0; i < allCells.length; i++) {
         allCells[i].style.fontWeight = "normal";
         allCells[i].style.fontStyle = "normal";
         allCells[i].style.textDecoration = "none";
         allCells[i].style.fontFamily = "Arial";
-        allCells[i].style.fontSize = "10px";
+        allCells[i].style.fontSize = "16px";
         allCells[i].style.textAlign = "left";
         allCells[i].innerText = "";
+// to completw****************
+        allCells[i].addEventListener("keydown", function (e) {
+            if (e.key == "Enter") {
+                allCells[i + 26].click();
+            }
+        });
     }
 }
 

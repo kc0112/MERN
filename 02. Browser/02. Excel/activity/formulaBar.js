@@ -51,7 +51,11 @@ formulaBarInput.addEventListener("keydown", function (e) {
 		if (oldFormula == newFormula) {
 			return;
 		}
-
+		let isCycle = cycleDetect(address, newFormula);
+		console.log(isCycle);
+		if (isCycle == true) {
+			return;
+		}
 		if (oldFormula != "" && oldFormula != newFormula) {
 			removeFormula(cellObject, address);
 		}
@@ -95,7 +99,7 @@ function removeFormula(cellObject, address) {
 		// => repeat for next child
 function changeChildren(cellObject) {
 	let children = cellObject.children; // D1
-	console.log(children);
+	// console.log(children);
 	for (let i = 0; i < children.length; i++) {
 		let childAddress = children[i]; // "A1"
 		let childRIdCId = getRidCidFromAddress(childAddress);
@@ -155,4 +159,30 @@ function setFormula(evaluatedValue, newFormula, rid, cid, address) {
 			cellObject.children.push(address);
 		}
 	}
+}
+
+
+// edge case 
+
+//1. Cycle detection
+
+function cycleDetect(childAddress, formula) {
+	let formulaTokens = formula.split(" "); 
+	for (let i = 0; i < formulaTokens.length; i++) {
+		let firstCharOfToken = formulaTokens[i].charCodeAt(0); // a
+		if (firstCharOfToken >= 65 && firstCharOfToken <= 90) {
+			let parentAddress = formulaTokens[i];
+			if (parentAddress == childAddress) { 
+				return true;
+			}
+			let parentRIdCId = getRidCidFromAddress(childAddress);
+			let cellObject = sheetDB[parentRIdCId.rid][parentRIdCId.cid];
+			let children = cellObject.children;
+
+			for (let i = 0; i < children.length; i++) {
+				return cycleDetect(children[i], formula);
+			}
+		}
+	}
+	return false;
 }

@@ -12,7 +12,7 @@
         - Information button which guides new users.
 
 2. ## **Excel**
-        * Made Excel clone
+    1. Excel clone
         - formatting - align,font
         - coloring
         - download

@@ -4,8 +4,23 @@
         - Input tasks and display
         - delete tasks
     2. ### **Task Manager**
+       - Add/Delete/Edit Tasks.
+        - Lock/Unlock Task Editing.
+        - Set/Change Priority of Tasks.
+        - Filter Tasks according to priority.
+        - Saves data in the Local Storage.
+        - Information button which guides new users.
 
 2. ## **Excel**
+        - Made Excel clone
+        - formatting - align,font
+        - coloring
+        - download
+        - open
+        - new
+        - formula enabled
+        - multiple sheets
+4. ## **Camera**
 
 
 ### References

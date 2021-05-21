@@ -4,7 +4,7 @@
         - Input tasks and display
         - delete tasks
     2. ### **Task Manager**
-       - Add/Delete/Edit Tasks.
+        - Add/Delete/Edit Tasks.
         - Lock/Unlock Task Editing.
         - Set/Change Priority of Tasks.
         - Filter Tasks according to priority.
@@ -12,7 +12,7 @@
         - Information button which guides new users.
 
 2. ## **Excel**
-        - Made Excel clone
+        * Made Excel clone
         - formatting - align,font
         - coloring
         - download

@@ -13,12 +13,25 @@
         <div class="formatting-container">
             <div class="subgroup">
                 <select id="font-family" class="font-family">
-                    <option value="Arial">Arial</option>
-                    <option value="Cambria">Cambria</option>
-                    <option value="Georgia">Georgia</option>
-                    <option value="monospace">monospace</option>
-                    <option value="sans-serif">sans-serif</option>
-                    <option value="fantasy">fantasy</option>
+                    <option style="--font:Noto Sans" value="Noto Sans">Noto Sans</option>
+                    <option style="--font:Arial" value="Arial">Arial</option>
+                    <option style="--font:Cambria" value="Cambria">Cambria</option>
+                    <option style="--font:Georgia" value="Georgia">Georgia</option>
+                    <option style="--font:monospace" value="monospace">monospace</option>
+                    <option style="--font:sans-serif" value="sans-serif">sans-serif</option>
+                    <option style="--font:fantasy" value="fantasy">fantasy</option>
+                    <option style="--font:Calibri" value="Calibri">Calibri</option>
+                    <option style="--font:Comic Sans MS" value="Comic Sans MS">Comic Sans MS</option>
+                    <option style="--font:Courier New" value="Courier New">Courier New</option>
+                    <option style="--font:Impact" value="Impact">Impact</option>
+                    <option style="--font:Garamond" value="Garamond">Garamond</option>
+                    <option style="--font:Lato" value="Lato">Lato</option>
+                    <option style="--font:Open San" value="Open Sans">Open Sans</option>
+                    <option style="--font:Palatino" value="Palatino">Palatino</option>
+                    <option style="--font:Verdana" value="Verdana">Verdana</option>
+                </select>
+                
+                    
                 </select>
                 <div class="BUI_container">
                     <input type="button" value="B" class="bold">
@@ -46,6 +59,18 @@
             <input type="button" value="C" class="center">
             <input type="button" value="R" class="right">
         </div>
+        <div class="nos-container">
+            <i class="far fa-envelope-open open">
+                <div>Open</div>
+                </i>
+            <i class="fas fa-plus-circle new">
+                <div>New</div>
+            </i>
+            <i class="fas fa-file-download download">
+                <div>Save
+                </div>
+            </i>
+        </div>
     </div>
     <div class="formula-container">
         <input type="text" class="address-box" readonly>
@@ -69,5 +94,6 @@
     <script src="init.js" defer></script>
     <script src="style.js" defer></script>
     <script src="formulaBar.js" defer></script>
+    <script src="newOpenSave.js" defer></script>
 </body>
 </html>

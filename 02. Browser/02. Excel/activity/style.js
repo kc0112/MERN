@@ -16,6 +16,8 @@ let formulaBarInput = document.querySelector(".formula-box");
 
 let addbtn = document.querySelector(".add-sheet_container");
 let allCells = document.querySelectorAll(".grid .col");
+let gridContainer = document.querySelector(".grid-container");
+let topLeftBlock = document.querySelector(".top-left-block");
 
 let sheetlist = document.querySelector(".sheets-list");
 let firstSheet = document.querySelector(".sheet");
@@ -240,19 +242,32 @@ for (let i = 0; i < allCells.length; i++){
 
         // fontFamilty -> set to cell's previous set value
         fontFamily.value = cellObj.fontFamily;
-    })
+    });
+
+    // increases height of left call as cell height increases
+    allCells[i].addEventListener("keydown", function (e) {
+        // returns height of the cell
+        let obj = allCells[i].getBoundingClientRect();
+        let height = obj.height;
+        let address = addressBar.value; //A1
+        let { rid, cid } = getRidCidFromAddress(address); //00
+        let leftCol = document.querySelectorAll(".left-col .left-col_box")[rid];
+        leftCol.style.height = height + "px";
+    });
 }
 allCells[0].click();
-// // save text to db (blur event -> detects when element is out of focus)
-// for (let i = 0; i < allCells.length; i++) {
-//     allCells[i].addEventListener("blur", function handleCell() {
-//         let address = addressBar.value; //A1
-//         let { rid, cid } = getRidCidFromAddress(address); //00
-//         let cell = document.querySelector(`.col[rid="${rid}"][cid="${cid}"]`);
-//         let cellObj = sheetDB[rid][cid];
-//         cellObj.value = cell.innerText;
-//     });
-// }
+
+
+gridContainer.addEventListener("scroll", function () {
+    // console.log(e);
+    let top = gridContainer.scrollTop;
+    let left = gridContainer.scrollLeft;
+    console.log(left);
+    topLeftBlock.style.top = top + "px";
+    topRow.style.top = top + "px";
+    leftCol.style.left = left + "px";
+    topLeftBlock.style.left = left + "px";
+})
 
 
 // *************************************************************************sheet*********************************************************

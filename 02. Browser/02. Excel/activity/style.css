@@ -1,174 +1,204 @@
-body{
-    margin:0;
+body {
+  margin: 0;
 }
-*{
-    box-sizing: border-box;
+* {
+  box-sizing: border-box;
 }
 
 /* ============================= menu ===================================== */
-.menu-container{
-    background-color: lightblue;
-    height: 80px;
-    display: flex;
-    align-items: center;
+.menu-container {
+  background-color: lightblue;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  
 }
 
-    .menu-container > *{
-    height:80%;
-    width:20%;
-    border-right:2px solid;
-    }
-    .formatting-container{
-        display: flex;
-        justify-content: space-around;
-    }
-        .subgroup{
-            display: flex;
-            flex-direction: column;
-            justify-content: space-evenly;  
-            width:45%;
-            height: 100%;   
-        }   
-            .subgroup>*{
-            width:100%
-            }
-            .BUI_container{
-                display: flex;
-                justify-content: space-between;
-            }
-                .BUI_container>*{
-                    width:30%;
-                }
-                .active-btn{
-                    background-color: grey;
-                }
+.menu-container > * {
+  height: 80%;
+  
+  width: 20%;
+  border-right: 2px solid;
+}
+select {
+  overflow-y: scroll;
+}
+option {
+  font-family: var(--font);
+}
+.formatting-container {
+  display: flex;
+  justify-content: space-around;
+}
+.subgroup {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 45%;
+  height: 100%;
+}
+.subgroup > * {
+  width: 100%;
+}
+.BUI_container {
+  display: flex;
+  justify-content: space-between;
+}
+.BUI_container > * {
+  width: 30%;
+}
+.active-btn {
+  background-color: grey;
+}
 
-            .color-container{
-                display: flex;
-                justify-content: space-between;
-            }
-                .color-container>*{
-                    width:45%;
-                }
-    .alignment-container{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-        .alignment-container>*{
-            width:20%;
-        }
+.color-container {
+  display: flex;
+  justify-content: space-between;
+}
+.color-container > * {
+  width: 45%;
+}
+
+.alignment-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.alignment-container > * {
+  width: 20%;
+}
+
+.nos-container {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  font-size: 1.5rem;
+}
+.open{
+    font-weight: bold;
+}
+i > div {
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+  font-family: comic Sans MS;
+}
 
 /* ============================= formula ===================================== */
-.formula-container{
-    background-color: rgb(151, 169, 175);
-    height: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
+.formula-container {
+  background-color: rgb(151, 169, 175);
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
 }
-    .address-box{
-    width:10%;
-    }
-    .seperator{
-        width:2%;
-    }
-    .formula-box{
-        width:80%;
-    }
-
+.address-box {
+  width: 10%;
+}
+.seperator {
+  width: 2%;
+}
+.formula-box {
+  width: 80%;
+}
 
 /* ============================= sheet ===================================== */
 
-.sheets{
-    background-color: lightgrey;
-    height:40px;
-    display: flex;
+.sheets {
+  background-color: lightgrey;
+  height: 40px;
+  display: flex;
 }
-    .add-sheet_container{
-        height: 100%;
-        min-width:30px;
-        border: 1px solid gray;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-        .icon{
-            font-size: 1.2rem;
-            color:lightgreen;
-        }
-    .sheets-list{
-        display: flex;
-        height: 100%;
-        overflow-x: auto;
-    }
-    .sheets-list::-webkit-scrollbar {
-        display: none;
-    }
-    /* Hide scrollbar for IE, Edge and Firefox */
-    .sheets-list {
-        -ms-overflow-style: none;  /* IE and Edge */
-        scrollbar-width: none;  /* Firefox */
-    }
-        .sheet{
-            min-width:60px;
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-            .active
-            {
-                background-color: white;
-            }
-
+.add-sheet_container {
+  height: 100%;
+  min-width: 30px;
+  border: 1px solid gray;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.icon {
+  font-size: 1.2rem;
+  color: lightgreen;
+}
+.sheets-list {
+  display: flex;
+  height: 100%;
+  overflow-x: auto;
+}
+.sheets-list::-webkit-scrollbar {
+  display: none;
+}
+/* Hide scrollbar for IE, Edge and Firefox */
+.sheets-list {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+.sheet {
+  min-width: 60px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.active {
+  background-color: white;
+}
 
 /* ============================= grid ===================================== */
 .top-left-block {
-    height: 30px;
-    width: 25px;
-    background-color: gray;
+  height: 30px;
+  width: 25px;
+  background-color: gray;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  /* z axis pr elevation */
+  z-index: 100;
 }
 
 .top-row {
-    height: 30px;
-    background-color: lightgreen;
-    display: flex;
-    position: absolute;
-    top: 0px;
-    left: 25px
+  height: 30px;
+  background-color: lightgreen;
+  display: flex;
+  position: absolute;
+  top: 0px;
+  left: 25px;
+  z-index: 90;
 }
 
 .left-col {
-    width: 25px;
-    /* border: 1px solid red; */
-}
-.left-col_box {
-    height: 30px;
-    background-color: lightgreen;
-    text-align: center;
-    border: 1px solid;
+  width: 25px;
+  position: absolute;
+  top: 30px;
+  left: 0px;
+  z-index: 90;
 }
 
-.grid-container{
-    height:calc(100vh - ( 80px + 30px + 40px) );
-    overflow: auto;
-    position: relative;
+.left-col_box {
+  height: 30px;
+  background-color: lightgreen;
+  text-align: center;
+  border: 1px solid;
 }
-.grid{
-    position:absolute;
-    top:30px;
-    left:25px;
+
+.grid-container {
+  height: calc(100vh - (80px + 30px + 40px));
+  overflow: auto;
+  position: relative;
+}
+.grid {
+  position: absolute;
+  top: 30px;
+  left: 25px;
 }
 
 .row {
-    display: flex;
+  display: flex;
 }
 
 .col {
-    min-width: 80px;
-    max-width:80px;
-    border: 1px solid;
-    min-height: 30px;
+  min-width: 80px;
+  max-width: 80px;
+  border: 1px solid;
+  min-height: 30px;
 }
-

@@ -2,17 +2,20 @@ let videoElem = document.querySelector("video"); // will only be available by au
 let videoRecorder = document.querySelector("#record-video");
 let recordState = false;
 let captureBtn = document.querySelector("#capture");
-
+let timingELem = document.querySelector("#timing");
+let clearObj;
+let uiFilter = document.querySelector(".ui-filter");
+let filterColor = "";
+let filterContainer = document.querySelector(".filter-container");
+let allFilters = document.querySelectorAll(".filter");
+let zoomInElem = document.querySelector("#plus-container");
+let zoomOutElem = document.querySelector("#minus-container");
+let zoomLevel = 1;
 // let audioElem = document.querySelector("audio");
 
 // permissions
 let constraints = {
     video:true,
-    // audio: {
-    //     echoCancellationType: 'system',
-    //     echoCancellation: true,
-    //     noiseSuppression: true,
-    // }
     audio: true,
 }
 
@@ -27,6 +30,8 @@ navigator.mediaDevices
     .then(function (mediaStream) {
         //feed ui
         videoElem.srcObject = mediaStream; // a MediaStream containing a video track and/or an audio track with the input.
+        
+
         mediaRecorder = new MediaRecorder(mediaStream); // Creates a new MediaRecorder object, given a MediaStream to record
         
         // triggers on mediaRecorder.start()
@@ -49,33 +54,57 @@ navigator.mediaDevices
 }).catch(function(err){
     console.log(err);
 })
-// var echoCancellation = navigator.MediaTrackSetting.echoCancellation;
-videoRecorder.addEventListener("click",function(e){
+
+videoRecorder.addEventListener("click", function (e) {
+    
+    console.log("video clicked");
     if(!mediaRecorder){ 
         alert("first allow permissions");
         return;
     }
-    if(recordState==false){
+    // start(),start timer,change icon+add animation
+    if (recordState == false) {
+        uiFilter.classList.remove("ui-filter-active");
+        uiFilter.style.backgroundColor = "";
+        filterContainer.style.display = "none";
         mediaRecorder.start() // automatically triggers dataavailable event
         recordState = true;
-        videoRecorder.setAttribute("class","fas fa-stop-circle record-btn")
-    }else{
+        
+        startCounting();
+        videoRecorder.setAttribute("class","fas fa-stop-circle record-btn record-animation")
+    }
+    // stop(),stop timer,change icon
+    else {
+        filterContainer.style.display = "block";
+        uiFilter.classList.add("ui-filter-active");
+        uiFilter.style.backgroundColor = filterColor;
         mediaRecorder.stop(); // automatically trigger stop event
         recordState = false;
+        stopCounting();
         videoRecorder.setAttribute("class","fas fa-video record-btn")
-        
     }
 });
 
-// create canvas of size of videoFrame
-// draw frame
-// 
+// create canvas of size of videoFrame,draw current frame,add/remove animation,download
 captureBtn.addEventListener("click", function (e) {
+    console.log("clicked capture");
     let canvas = document.createElement("canvas");
     canvas.width = videoElem.videoWidth;
     canvas.height = videoElem.videoHeight;
+    captureBtn.classList.add("capture-animation");
     let tool = canvas.getContext("2d");
-    tool.drawImage(videoElem, 0, 0);
+
+    tool.scale(zoomLevel, zoomLevel);
+    let x = (canvas.width / zoomLevel - canvas.width) / 2;
+    let y = (canvas.height / zoomLevel - canvas.height) / 2;
+    
+    tool.drawImage(videoElem, x, y);
+
+    if (filterColor != "") {
+        tool.fillStyle = filterColor;
+        tool.fillRect(0, 0, canvas.width, canvas.height);
+    }
+    
     let link = canvas.toDataURL(); // converts to link 
     let a = document.createElement("a");
     a.href = link;
@@ -83,6 +112,55 @@ captureBtn.addEventListener("click", function (e) {
     a.click();
     a.remove();
     canvas.remove();
+    setTimeout(function () {
+        captureBtn.classList.remove("capture-animation");
+    }, 1000)
 })
 
+// timer 
+function startCounting() {
+    timingELem.classList.add("timing-active");
+    let timeCount = 0;
+    clearObj = setInterval(function () {
+        let seconds = (timeCount % 60) < 10 ? `0${timeCount % 60}` : `${timeCount % 60}`;
+        let minutes = (timeCount / 60) < 10 ? `0${Number.parseInt(timeCount / 60)}` : `${Number.parseInt(timeCount / 60)}`;
+        let hours = (timeCount / 3600) < 10 ? `0${Number.parseInt(timeCount / 3600)}` : `${Number.parseInt(timeCount / 3600)}`;
+            timingELem.innerText = `${hours}:${minutes}:${seconds}`;
+        timeCount++;
+    }, 1000);
+}
+function stopCounting() {
+    timingELem.classList.remove("timing-active");
+    timingELem.innerText = "00: 00: 00";
+    clearInterval(clearObj);
+}
 
+for (let i = 0; i < allFilters.length; i++) {
+    allFilters[i].addEventListener("click", function () {
+        // add filter to ui
+        let color = allFilters[i].style.backgroundColor;
+        if (color) {
+            uiFilter.classList.add("ui-filter-active");
+            uiFilter.style.backgroundColor = color;
+            filterColor = color;
+        } else {
+            uiFilter.classList.remove("ui-filter-active");
+            uiFilter.style.backgroundColor = "";
+            filterColor = "";
+        }
+    })
+}
+
+// zoom in zoom out
+zoomInElem.addEventListener("click", function () {
+    if (zoomLevel < 3) {
+        zoomLevel += 0.2;
+        videoElem.style.transform = `scale(${zoomLevel})`;
+    }
+})
+zoomOutElem.addEventListener("click", function () {
+    if (zoomLevel > 1) {
+        zoomLevel -= 0.2;
+        videoElem.style.transform = `scale(${zoomLevel})`;
+    }
+})

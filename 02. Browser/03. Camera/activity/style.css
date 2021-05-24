@@ -4,6 +4,7 @@
 
 body{
     margin: 0px;
+    overflow: hidden;
 }
 
 .video-container{
@@ -16,11 +17,6 @@ body{
     height:100%;
     width: 100%;
 }
-
-#capture{
-    color:white;
-}
-
 .record-btn,.capture-btn{
     position:fixed; /* z index bina position k kam ni krta*/
     font-size: 2.5rem;
@@ -28,11 +24,98 @@ body{
     height:5rem;
     width:5rem;
     top:1rem;
-    z-index:2;
-    border-radius:50%;
+    z-index:6;
     right: 4vw;
     top:40vh;
 }
+
+.record-animation{
+    animation: scaleUp 1s ease-in infinite; 
+}
+.capture-animation{
+    animation: scaleUp 0.5s ease-in ; 
+}
 .capture-btn{
-    top:50vh;
+    top:60vh;
+    right: 4.3vw;
+}
+@keyframes scaleUp{
+    0% {
+        transform:scale(1);
+    }
+    25% {
+        transform:scale(1.125);
+    }
+    50% {
+        transform:scale(1.2);
+    }
+    75% {
+        transform:scale(1.125);
+    }
+    100% {
+        transform:scale(1);
+    }
+}
+
+
+.filter-container{
+    height:50vh;
+    width:4rem;
+    position: fixed;
+    z-index: 6;
+    top:10vh;
+    left:5vw;
+}
+.filter{
+   background-image: url("https://picsum.photos/id/237/200/300"); 
+    height: 20%;  
+   background-size: cover;
+   /* mix bg color with the  image */
+   background-blend-mode: color-burn;
+}
+.timing{
+    color:white;
+    position: fixed;
+    bottom :15vh;
+    left:3vw;
+    font-size: 1.7rem;
+    font-family: sans-serif;
+    font-weight: 600;
+    display: none;
+}
+.timing-active{
+    display: block;
+}
+
+.ui-filter{
+    height:100vh;
+    width:100vw ;
+    position: fixed;
+    z-index: 4;
+    display: none;
+} 
+
+.ui-filter-active{
+    display: block;
+}
+
+.zoom{
+    height: 7rem;
+    width: 3rem;
+    background-color: #444;
+    position: fixed;
+    z-index: 6;
+    right: 7vw;
+    top: 9vh;
+}
+.icon-container{
+    color: white;
+    height: 50%;
+    border-bottom: 2px solid black;
+    text-align: center;
+    padding-top: 1rem;
+    
+}
+.icon{
+    font-size: 180%;
 }

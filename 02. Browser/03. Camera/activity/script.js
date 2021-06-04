@@ -8,6 +8,7 @@ let uiFilter = document.querySelector(".ui-filter");
 let filterColor = "";
 let filterContainer = document.querySelector(".filter-container");
 let allFilters = document.querySelectorAll(".filter");
+let zoomBox = document.querySelector(".zoom");
 let zoomInElem = document.querySelector("#plus-container");
 let zoomOutElem = document.querySelector("#minus-container");
 let zoomLevel = 1;
@@ -69,12 +70,15 @@ videoRecorder.addEventListener("click", function (e) {
         filterContainer.style.display = "none";
         mediaRecorder.start() // automatically triggers dataavailable event
         recordState = true;
-        
+        let currZoom = 1;
+        videoElem.style.transform = `scale(${currZoom})`;
+        zoomBox.style.display = "none";
         startCounting();
         videoRecorder.setAttribute("class","fas fa-stop-circle record-btn record-animation")
     }
     // stop(),stop timer,change icon
     else {
+        zoomBox.style.display = "block";
         filterContainer.style.display = "block";
         uiFilter.classList.add("ui-filter-active");
         uiFilter.style.backgroundColor = filterColor;
@@ -93,12 +97,10 @@ captureBtn.addEventListener("click", function (e) {
     canvas.height = videoElem.videoHeight;
     captureBtn.classList.add("capture-animation");
     let tool = canvas.getContext("2d");
-
+    tool.translate(canvas.width / 2, canvas.height / 2);
     tool.scale(zoomLevel, zoomLevel);
-    let x = (canvas.width / zoomLevel - canvas.width) / 2;
-    let y = (canvas.height / zoomLevel - canvas.height) / 2;
-    
-    tool.drawImage(videoElem, x, y);
+    tool.translate(-canvas.width / 2, -canvas.height / 2);
+    tool.drawImage(videoElem, 0, 0);
 
     if (filterColor != "") {
         tool.fillStyle = filterColor;

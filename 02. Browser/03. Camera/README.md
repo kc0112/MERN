@@ -8,3 +8,6 @@
 * https://stackoverflow.com/questions/33311856/keep-the-image-centred-after-scaling
 * https://github.com/Harvey38/PP-20201
 * https://javascript.info/indexeddb
+* https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/functional-programming/use-the-reduce-method-to-analyze-data
+* https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/es6/use-destructuring-assignment-to-assign-variables-from-nested-objects
+* https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/functional-programming/use-higher-order-functions-map-filter-or-reduce-to-solve-a-complex-problem

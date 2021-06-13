@@ -12,6 +12,7 @@ let zoomBox = document.querySelector(".zoom");
 let zoomInElem = document.querySelector("#plus-container");
 let zoomOutElem = document.querySelector("#minus-container");
 let zoomLevel = 1;
+
 // let audioElem = document.querySelector("audio");
 
 // permissions
@@ -43,14 +44,17 @@ navigator.mediaDevices
         mediaRecorder.addEventListener("stop", function (e) {
             // convert data to blob
             const blob = new Blob(buffer, { type: 'video/mp4' }); // converts data to file of this type
-            const url = window.URL.createObjectURL(blob); // creates file to url
-            // download btn
-            let a = document.createElement("a");
-            // download
-            a.download = "file.mp4"; // downloads in this file
-            a.href = url; // url contains data
-            a.click();
-            buffer = [];
+            addMediaToGallery(blob, 'video');
+
+            
+            // const url = window.URL.createObjectURL(blob); // creates file to url
+            // // download btn
+            // let a = document.createElement("a");
+            // // download
+            // a.download = "file.mp4"; // downloads in this file
+            // a.href = url; // url contains data
+            // a.click();
+            // buffer = [];
         })
 }).catch(function(err){
     console.log(err);
@@ -106,14 +110,14 @@ captureBtn.addEventListener("click", function (e) {
         tool.fillStyle = filterColor;
         tool.fillRect(0, 0, canvas.width, canvas.height);
     }
-    
-    let link = canvas.toDataURL(); // converts to link 
-    let a = document.createElement("a");
-    a.href = link;
-    a.download = "file.png";
-    a.click();
-    a.remove();
-    canvas.remove();
+    addMediaToGallery(canvas.toDataURL(), 'img');
+    // let link = canvas.toDataURL(); // converts to link 
+    // let a = document.createElement("a");
+    // a.href = link;
+    // a.download = "file.png";
+    // a.click();
+    // a.remove();
+    // canvas.remove();
     setTimeout(function () {
         captureBtn.classList.remove("capture-animation");
     }, 1000)

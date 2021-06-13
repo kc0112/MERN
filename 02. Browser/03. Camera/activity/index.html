@@ -19,21 +19,25 @@
     </div>
     <div class="ui-filter"></div>
     <div class="timing "id="timing">00:00:00</div>
-   <div class="video-container">
+    <div class="video-container">
        <video class="video" id="video-elem" autoplay></video> <!-- autoplay se recording screen dikhti-->
-   </div> 
-   <div class="zoom">
-    <div class=" icon-container" id="plus-container">
-        <i class="fas fa-plus icon"></i>
+    </div> 
+    <div class="zoom">
+        <div class=" icon-container" id="plus-container">
+            <i class="fas fa-plus icon"></i>
+        </div>
+        <div class="icon-container" id="minus-container">
+            <i class="fas fa-minus icon"></i>
+        </div>
     </div>
-    <div class="icon-container" id="minus-container">
-        <i class="fas fa-minus icon"></i>
+    <i class="fas fa-video record-btn" id="record-video"></i>
+    <i class="fas fa-camera capture-btn" id="capture"></i>
+    <div class="gallery_icon">
+        <img src="gallery.png"  onclick="document.location.href='gallery.html'" alt="">
+        <a href="gallery.html"></a>
     </div>
-</div>
-   <i class="fas fa-video record-btn" id="record-video"></i>
-   
-   <i class="fas fa-camera capture-btn" id="capture"></i>
-    <script src="script.js"></script>
+<script src="dbScript.js" defer></script>
+<script src="script.js" defer></script>
 
 </body>
 </html>

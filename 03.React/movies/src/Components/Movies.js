@@ -9,7 +9,6 @@ export default class Movies extends Component {
             currSearchText:''
         }
     }
-
     onDelete=(id)=>{
         let filterArr = this.state.movies.filter(movieObj=>{
             return movieObj._id!=id

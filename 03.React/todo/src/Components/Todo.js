@@ -52,16 +52,17 @@ class InputComponent extends Component {
     handleChange=(e)=>{
         this.setState({currTask:e.target.value})
     }
-    render() {
+    render(){
         console.log('Input render');
         return (
             <div className='input-container'>
-            <input value={this.state.currTask} onChange={this.handleChange} type='text'></input>
-            <button onClick={()=>{
-                this.props.onSubmit(this.state.currTask)
-                this.setState({currTask:''})
-                }
-            } >Add</button>
+                <input value={this.state.currTask} onChange={this.handleChange} type='text'></input>
+                <button onClick={
+                    () => {
+                        this.props.onSubmit(this.state.currTask)
+                        this.setState({currTask:''})
+                    }
+                } >Add</button>
             </div>
         )
     }

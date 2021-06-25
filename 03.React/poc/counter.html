@@ -15,32 +15,30 @@
 <body>
     <div id="root"></div>
     <script type="text/babel"> // JSX Code
-    class Counter extends React.Component{
-        constructor(){
-            super(); // to get "this"
-            this.state = {
-                count: 0
+        class Counter extends React.Component{
+            constructor(){
+                super(); // to get "this"
+                this.state = {
+                    count: 0
+                }
+            }
+            increment = () =>{
+                    this.setState({count:this.state.count+1}); // setState function to increment //ui pr dikhega
+            }
+            decrement = () =>{
+                    this.setState({count:this.state.count-1}); // setState function to increment
+            }
+            render(){
+                return(
+                    <React.Fragment>
+                        <h1>{this.state.count}</h1>
+                        <button onClick={this.increment}>+</button>
+                        <button onClick={this.decrement}>-</button>
+                    </React.Fragment>
+                )
             }
         }
-        increment = () =>{
-                this.setState({count:this.state.count+1}); // setState function to increment
-        }
-        decrement = () =>{
-                this.setState({count:this.state.count-1}); // setState function to increment
-        }
-        render(){
-            return(
-                <React.Fragment>
-                    <h1>{this.state.count}</h1>
-                    <button onClick={this.increment}>+</button>
-                    <button onClick={this.decrement}>-</button>
-                </React.Fragment>
-            )
-        }
-    }
-    
-
-    ReactDOM.render(<Counter/>,document.getElementById("root")); // 
+        ReactDOM.render(<Counter/>,document.getElementById("root")); // 
     </script>
 </body>
 </html>

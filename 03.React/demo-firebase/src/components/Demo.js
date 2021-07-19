@@ -48,10 +48,12 @@ function Demo() {
     return (
         <>
             {loading
-                    ?
-                <div className="spinner-border text-primary" role="status">
-                 <span className="sr-only">Loading...</span>
+                ?
+                <div class="text-center">
+                      <div class="spinner-grow" role="status">
+                  </div>
                 </div>
+                  
                     :
                 user == null
                         ?

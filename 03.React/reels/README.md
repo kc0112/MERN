@@ -27,6 +27,9 @@
 - Collection 
 - Upload photo add to database
 - Intersection Observer API
+- Private Route
+- Material UI
+- Redirect,useHistory
 
 ## Connecting to firebase
 - Create file 'firebase.js' in 'src' folder

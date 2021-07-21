@@ -78,11 +78,20 @@ function Signup() {
         }
     }
 
+    // Agr user logged in h to usko signup vala page nhi dikhana
+    useEffect(()=>{
+        if(currentUser)
+        {
+            history.push('/')
+        }
+    },[])
+
+
     const paperStyle={padding :20,width:280, margin:"20px auto"}
     const avatarStyle={backgroundColor:'#1bbd7e'}
     const btnstyle = { margin: '40px 0 0 0' }
     return (
-        <Grid>
+    <Grid>
         <Paper elevation={10} style={paperStyle}>
             <Grid align='center'>
                 <Avatar style={avatarStyle}><LockOutlinedIcon/></Avatar>

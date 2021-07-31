@@ -6,7 +6,6 @@ function Video(props) {
         e.preventDefault();
         e.target.muted = !e.target.muted;
     }
-    // vdo end hgayi to next vdo pr chalo
     const handleAutoScroll= (e)=>{
         let next = ReactDOM.findDOMNode(e.target).parentNode.nextSibling;
         if(next)

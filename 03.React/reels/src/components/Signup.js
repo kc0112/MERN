@@ -1,5 +1,5 @@
 import React,{useState,useEffect,useContext} from 'react'
-import { AuthContext } from '../context/AuthProvider'
+import { AuthContext } from '../Context/AuthProvider'
 import { storage,database } from '../firebase';
 import { useHistory } from 'react-router-dom';
 import { Grid,Paper, Avatar, TextField, Button} from '@material-ui/core'
@@ -19,7 +19,7 @@ function Signup() {
     const handleSignup = async (e) => {
         // prevents default action of button
         e.preventDefault();
-        try{
+        try{                                         
             // loader chlega, signup,uid lelenge for future use
             setLoading(true);
             let res = await signup(email, password);

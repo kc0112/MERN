@@ -1,5 +1,5 @@
 import React,{useState,useEffect,useContext} from 'react'
-import { AuthContext } from '../context/AuthProvider'
+import { AuthContext } from '../Context/AuthProvider'
 import { useHistory } from 'react-router-dom';
 import { Grid,Paper, Avatar, TextField, Button,Typography} from '@material-ui/core'
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';

@@ -1,10 +1,10 @@
 import './App.css';
-import Signup from './components/Signup';
-import AuthProvider from './context/AuthProvider';
-import Login from './components/Login';
+import Signup from './Components/Signup';
+import AuthProvider from './Context/AuthProvider';
+import Login from './Components/Login';
 import {BrowserRouter as Router, Switch,Route} from 'react-router-dom';
-import PrivateRoute from './components/PrivateRoute';
-import Feed from './components/Feed'
+import PrivateRoute from './Components/PrivateRoute';
+import Feed from './Components/Feed'
 function App() {
   return (
    <Router>

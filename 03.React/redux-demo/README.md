@@ -1,4 +1,4 @@
-# REELS APP
+# REDUX
 
 ## Getting Started
 - npx create-react-app reels

@@ -6,45 +6,40 @@
 - npm start
 
 ## Dependencies
-- npm i firebase
-- npm i react-router-dom
-- npm i @material-ui/core
-- npm i @material-ui/icons
-- npm i firebase-tools
+- npm i redux-thunk
+- npm i redux react-reduc redux-devtools-extension
+- npm i axios
 
-## References
-- https://material-ui.com/ -> Material UI
-- https://apexcharts.com/ -> Graphs,charts
+## API
+- https://jsonplaceholder.typicode.com/users -> fetch users
 
-## Steps 
-- firebase Signup and Login
-- User Collection
-- Upload photo add to database
-- display posts on feed
-- comments,likes feature
+## Brief
+- batContainer - buy or sell bat from store
+- ballContainer - buy balls from store
+- user - display user from api
 
-## Database
-- authentication :
-    - user -> email,id,createdAt
-- firestore :
-    - posts -> comments,likes,id,photo,user,profile,createdAt
-    - user -> posts,createdAt,email
-
+## store
+- global state{
+    ball: {
+        numofBalls:20
+    }
+    bat:{
+        numofBats:20
+    }
+    user:{
+        loading:false,
+        error:"",
+        users:[]
+    }
+}
 
 ## Key Learnings
-- Firebase Authentication
-- Collection 
-- Upload photo add to database
-- Intersection Observer API
-- Private Route
-- Material UI
-- Redirect,useHistory
-- React Tickers
-- video autoplay,mute
-- interactive observation API
-- lazy loading
+- Redux via ball,bat,user example
+- Actions,reducers,store
+- thunk via user example
+- how to make combinedReducers
+- connect
+- mapDispatchToProps,mapStateToProps
 
-## Connecting to firebase
-- Create file 'firebase.js' in 'src' folder
-- Fill in details and export 
-- npm i firebase
+## References
+

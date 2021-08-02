@@ -15,20 +15,23 @@ import { createFirestoreInstance } from 'redux-firestore';
 import { composeWithDevTools} from 'redux-devtools-extension'
 
 var firebaseConfig = {
-  apiKey: "AIzaSyBoGvmfSf0pXzGsLB_5v-DKn3PgfQNw1BQ",
-  authDomain: "resume-builder-19639.firebaseapp.com",
-  projectId: "resume-builder-19639",
-  storageBucket: "resume-builder-19639.appspot.com",
-  messagingSenderId: "925394018410",
-  appId: "1:925394018410:web:3050063bd59db4027bea13"
+    apiKey: "AIzaSyBdgLQrXmsLYrydzOI07T70n73HVfjIEkE",
+    authDomain: "resume-builder-5ee90.firebaseapp.com",
+    projectId: "resume-builder-5ee90",
+    storageBucket: "resume-builder-5ee90.appspot.com",
+    messagingSenderId: "49183426097",
+    appId: "1:49183426097:web:e0ee10ad43dbe3056c7710"
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 firebase.firestore()
 
+// thunk me kbi b function return krnge to args me humesha firebase,firestore k instances ajaenge
 const reduxStore = createStore(rootReducer,
   composeWithDevTools(
-    applyMiddleware(thunk.withExtraArgument({getFirebase, getFirestore})), 
+    // getfirestore,getfirebase -> get instance of firestore,firebase
+    applyMiddleware(thunk.withExtraArgument({ getFirebase, getFirestore })),
+    // get firestore ni chlta ache se to line 34 likhte
     reduxFirestore(firebase) // redux bindings for firestore,  
   )
 );
@@ -37,6 +40,7 @@ const reduxStore = createStore(rootReducer,
 ReactDOM.render(
   <Provider store={reduxStore}>
     <BrowserRouter>
+      {/* firebase,firestore k instances redux store me ajae */}
     <ReactReduxFirebaseProvider
       firebase={firebase}
       config={firebaseConfig}

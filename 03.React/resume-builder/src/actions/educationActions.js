@@ -1,10 +1,10 @@
-import * as actionTypes from './actionTypes';
+import { ADD_EDUCATION, UPDATE_EDUCATION } from './actionTypes';
 
 export const add = (educationSection)=>{
-    return {type:actionTypes.ADD_EDUCATION,educationSection:educationSection}
+    return {type:ADD_EDUCATION,educationSection:educationSection}
 
 }
 
 export const update = (educationSection)=>{
-    return {type:actionTypes.UPDATE_EDUCATION,educationSection:educationSection}
+    return {type:UPDATE_EDUCATION,educationSection:educationSection}
 }

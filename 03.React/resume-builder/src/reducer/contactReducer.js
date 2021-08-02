@@ -1,13 +1,13 @@
 import initialState from './initialState.json';
-import * as actionTypes from '../actions/actionTypes'
+import { ADD_CONTACT, UPDATE_CONTACT } from './actionTypes';
 
 export default function contactReducer(state=initialState.contactSection,action){
     switch(action.type)
     {
-        case actionTypes.ADD_CONTACT:
+        case ADD_CONTACT:
             return {...action.contactSection}
 
-        case actionTypes.UPDATE_CONTACT:
+        case UPDATE_CONTACT:
             return {...action.contactSection}
 
         default:

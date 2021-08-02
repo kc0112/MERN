@@ -1,13 +1,13 @@
 import initialState from './initialState.json';
-import * as actionTypes from '../actions/actionTypes'
+import { ADD_EDUCATION, UPDATE_EDUCATION } from './actionTypes';
 
 export default function educationReducer(state=initialState.educationSection,action){
     switch(action.type)
     {
-        case actionTypes.ADD_EDUCATION:
+        case ADD_EDUCATION:
             return {...action.educationSection}
 
-        case actionTypes.UPDATE_EDUCATION:
+        case UPDATE_EDUCATION:
             return {...action.educationSection}
 
         default:

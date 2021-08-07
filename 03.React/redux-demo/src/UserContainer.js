@@ -1,10 +1,12 @@
 import React,{useEffect} from 'react'
 import {connect} from 'react-redux';
 import {fetchUsers} from './redux/users/UserActions'
-function UserContainer({userData,fetchUsers}) {
+function UserContainer({ userData, fetchUsers }) {
+    
     useEffect(()=>{
         fetchUsers();
-    },[])
+    }, [])
+    
     return (
        userData.loading==true?<h2>Loading</h2>:userData.error?<h2>{userData.error}</h2>:(
            <div>

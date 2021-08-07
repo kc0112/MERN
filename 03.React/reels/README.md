@@ -1,6 +1,3 @@
-
-
-
 # REELS APP
 
 ## Getting Started

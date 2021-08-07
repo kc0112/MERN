@@ -16,4 +16,6 @@ const BatReducer= (state=initialState,action)=>{
             return state
     }
 }
-export default BatReducer  
+export default BatReducer
+
+

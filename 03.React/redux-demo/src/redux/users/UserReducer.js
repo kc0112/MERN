@@ -4,6 +4,7 @@ const initialState = {
     users:[],
     error:''
 }
+
 const UserReducer = (state=initialState,action)=>{
     console.log(state);
     switch(action.type)

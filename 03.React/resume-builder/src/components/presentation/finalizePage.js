@@ -11,7 +11,7 @@ import {useFirestore} from 'react-redux-firebase'
     let documentd=props.document
   
     const saveToDatabase= async()=>{
-     let user = await firestore.collection('users').doc(props.auth.uid).get();
+      let user = await firestore.collection('users').doc(props.auth.uid).get();
      user = user.data();
      let newObj = null;
      if(user.resumeIds!=undefined)

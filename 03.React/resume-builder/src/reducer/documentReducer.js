@@ -1,5 +1,5 @@
 import initialState from './initialState.json';
-import {SET_SKIN,UPDATE_SKIN} from './actionTypes';
+import {SET_SKIN,UPDATE_SKIN} from '../actions/actionTypes';
 
 // reducer for document action
 /* action = {

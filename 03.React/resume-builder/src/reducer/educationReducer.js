@@ -1,5 +1,5 @@
 import initialState from './initialState.json';
-import { ADD_EDUCATION, UPDATE_EDUCATION } from './actionTypes';
+import { ADD_EDUCATION, UPDATE_EDUCATION } from '../actions/actionTypes';
 
 export default function educationReducer(state=initialState.educationSection,action){
     switch(action.type)

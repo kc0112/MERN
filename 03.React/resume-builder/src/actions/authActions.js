@@ -20,7 +20,6 @@ export const signInFailed = (err)=>{
 export const removeError = ()=>{
     return {type:actionTypes.REMOVE_ERROR}
 }
-
 export const signIn= (userData)=>{
     return async(dispatch,getState,obj)=>{
         console.log(obj);
@@ -42,8 +41,6 @@ export const signIn= (userData)=>{
 
     }
 }
-
-
 export const registerRequest =()=>{
     return {
         type:actionTypes.REGISTER_REQUEST
@@ -54,14 +51,12 @@ export const registerSuccess = ()=>{
         type:actionTypes.REGISTER_SUCCESS
     }
 }
-
 export const registerFailed = (err)=>{
     return{
         type:actionTypes.REGISTER_FAILED,
         error:err
     }
 }
-
 export const register = (userData)=>{
     return (dispatch,getState,{getFirebase,getFirestore})=>{
         dispatch(registerRequest());
